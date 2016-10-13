@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author pedroreis
  */
-@WebServlet(urlPatterns = {"/logoutHandler"})
+@WebServlet(urlPatterns = {"/user/logout"})
 public class logoutHandler extends HttpServlet {
 
     /**
@@ -35,7 +35,7 @@ public class logoutHandler extends HttpServlet {
         
         HttpSession session = request.getSession();
         session.setAttribute("username", username);
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("../login.jsp");
         
     }
 
