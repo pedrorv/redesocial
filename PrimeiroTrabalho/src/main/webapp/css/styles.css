@@ -12,7 +12,7 @@ div.main-login {
     margin-top: 80px;
     border-radius: 20px;
     border: 3px solid #aaa;
-    background-color: #ccc;
+    background-color: #eee;
     padding: 20px;
 }
 
@@ -21,14 +21,9 @@ label.label-login {
 }
 
 div.header {
-    text-align: center;
     color: #fff;
     background-color: #337ab7;
     border-bottom: 5px solid #2e6da4;
-}
-
-div.header h1 {
-    margin: 10px 0px;
 }
 
 div.header a {
@@ -38,5 +33,37 @@ div.header a {
 
 div.header a:hover {
     text-decoration: none; 
-    color: #cdcdcd;
+    color: #eee;
 }
+
+ul.header-navigation {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.header-navigation li {
+    padding: 10px 20px;
+    font-size: 20px;
+    display: inline-block;
+    line-height: 40px;
+}
+
+ul.header-navigation li:hover {
+    background-color: #2e6da4;
+}
+
+ul.header-navigation li {
+    float: right;
+}
+
+ul.header-navigation li:first-child {
+    font-size: 30px;
+    float: left;
+}
+
+div.custom-nav {
+    width: 80%;
+    margin: 0 auto;
+}
+
