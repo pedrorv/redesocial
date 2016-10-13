@@ -20,7 +20,7 @@
             <div class="custom-nav">
                 <ul class="header-navigation">
                     <li><a href="index.jsp">Feici</a></li>
-                    <li><a href="logout.jsp">Logout</a></li>
+                    <li><a href="logoutHandler">Logout</a></li>
                 </ul>
             </div>
         </div>

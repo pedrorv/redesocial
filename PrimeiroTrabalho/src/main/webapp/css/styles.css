@@ -8,12 +8,16 @@ and open the template in the editor.
     Author     : pedroreis
 */
 
-div.main-login {
+div.main-content {
     margin-top: 80px;
     border-radius: 20px;
     border: 3px solid #aaa;
     background-color: #eee;
     padding: 20px;
+}
+
+div.jumbotron {
+    margin-top: 40px;
 }
 
 label.label-login {

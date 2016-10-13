@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="container">
-            <div class="main-login col-sm-6 col-sm-offset-3">
+            <div class="main-content col-sm-6 col-sm-offset-3">
                 <form class="form-horizontal" method="GET" action="handleLogin">
                     <div class="form-group">
                         <label for="username" class="col-sm-2 control-label label-login">Usuário:</label>
