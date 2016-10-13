@@ -5,6 +5,7 @@
 --%>
 
 <%
+    // Logout current user
     
     session.setAttribute("username", "");
     response.sendRedirect("index.jsp");
