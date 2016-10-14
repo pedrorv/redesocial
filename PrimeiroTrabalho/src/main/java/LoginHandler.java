@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  * @author pedroreis
  */
 @WebServlet(urlPatterns = {"/user/login"})
-public class loginHandler extends HttpServlet {
+public class LoginHandler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,8 +39,6 @@ public class loginHandler extends HttpServlet {
             session.setAttribute("username", username);
             response.sendRedirect("../feed.jsp");
         }
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

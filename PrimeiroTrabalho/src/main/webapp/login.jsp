@@ -3,30 +3,24 @@
     Created on : Oct 13, 2016, 5:36:46 PM
     Author     : pedroreis
 --%>
+<%
+    
+    // Redirects to the feed page if user is already logged
+    
+    if (session.getAttribute("username") != null && session.getAttribute("username").toString() != "") {
+        response.sendRedirect("feed.jsp");
+    }
+    
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/normalize.css"/>
-        <link rel="stylesheet" href="css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="css/styles.css"/>
-        <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>      
-        <script src="js/script.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-    </head>
+    <%@include file="includes/html_head.jsp" %>
     <body>
-        <div class="container-fluid header">
-            <div class="custom-nav">
-                <ul class="header-navigation">
-                    <li><a href="index.jsp">Feici</a></li>
-                </ul>
-            </div>
-        </div>
+        <%@include file="includes/templates/header.jsp" %>
         <div class="container">
-            <div class="main-content col-sm-6 col-sm-offset-3">
+            <div class="main-login col-sm-6 col-sm-offset-3">
                 <form class="form-horizontal" method="GET" action="user/login">
                     <div class="form-group">
                         <label for="username" class="col-sm-2 control-label label-login">Usuário:</label>
@@ -34,7 +28,7 @@
                             <input type="text" class="form-control" name="username" placeholder="Entrar com usuário" autofocus required>
                         </div>
                     </div>
-                    <input type="submit" value="Logar" class="btn btn-primary col-sm-6 col-sm-offset-3"/>
+                    <input type="submit" value="Logar" class="btn btn-primary col-sm-6 col-sm-offset-3 login-button"/>
                 </form>
             </div>
         </div>

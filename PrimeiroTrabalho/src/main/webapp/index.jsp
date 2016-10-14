@@ -16,25 +16,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/normalize.css"/>
-        <link rel="stylesheet" href="css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="css/styles.css"/>
-        <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>      
-        <script src="js/script.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-    </head>
+    <%@include file="includes/html_head.jsp" %>
     <body>
-        <div class="container-fluid header">
-            <div class="custom-nav">
-                <ul class="header-navigation">
-                    <li><a href="index.jsp">Feici</a></li>
-                    <li><a href="login.jsp">Login</a></li>
-                </ul>
-            </div>
-        </div>
+        <%@include file="includes/templates/header.jsp" %>
         <div class="container">
             <div class="jumbotron">
                 <h1>Bem-vindo ao Feici!</h1>

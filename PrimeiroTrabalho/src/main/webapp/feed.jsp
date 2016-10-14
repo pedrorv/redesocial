@@ -5,10 +5,10 @@
 --%>
 <%
     
-    // Redirects to the news feed if user is already logged
+    // Redirects to the login page if user isn't already logged
     
     if (session.getAttribute("username") == null || session.getAttribute("username").toString() == "") {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("login.jsp");
     }
     
 %>
@@ -17,27 +17,42 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/normalize.css"/>
-        <link rel="stylesheet" href="css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="css/styles.css"/>
-        <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>      
-        <script src="js/script.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-    </head>
+    <%@include file="includes/html_head.jsp" %>
     <body>
-        <div class="container-fluid header">
-            <div class="custom-nav">
-                <ul class="header-navigation">
-                    <li><a href="index.jsp">Feici</a></li>
-                    <li><a href="user/logout">Logout</a></li>
-                </ul>
+        <%@include file="includes/templates/header.jsp" %>
+        <div class="container main-content">
+            <div class="user-info col-sm-4">
+                <h4 class="user-firstname col-sm-offset-1"> ${username} </h4>
+                
+                <form class="form-horizontal" method="POST" action="user/post">
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <textarea class="form-control auto-expand" 
+                                      name="post-content" rows="2" data-min-rows="2" 
+                                      placeholder="Solte o verbo!" required></textarea>
+                        </div>
+                    </div>
+                    <input type="submit" value="Postar" class="btn btn-primary col-sm-3 col-sm-offset-8 post-button"/>
+                </form>
             </div>
-        </div>
-        <div class="container">
-            <h3>Usuário logado: <span>${username}</span></h3>
+            <div class="user-feed col-sm-8">
+                <% for (int i = 0; i < 4; i++) { %>
+                <div class="post col-sm-10 col-sm-offset-1">
+                    <h3>Autor</h3>
+                    <h6>Data</h6>
+                    <div class="post-content">
+                        <p>Conteúdo do post!</p>
+                    </div>
+                    <div class="post-actions">
+                        <ul class="user-actions">
+                            <li><a href="user/like">Curtir</a></li>
+                            <li><a href="user/comment">Comentar</a></li>
+                            <li><a href="user/share">Compartilhar</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <% } %>
+            </div>
         </div>
     </body>
 </html>
