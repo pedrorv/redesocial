@@ -4,9 +4,10 @@
     Author     : pedroreis
 --%>
 <%
+    
     // Redirects to the news feed if user is already logged
     
-    if (session.getAttribute("username") != null && !session.getAttribute("username").equals("")) {
+    if (session.getAttribute("username") != null && session.getAttribute("username").toString() != "") {
         response.sendRedirect("feed.jsp");
     }
     
@@ -21,7 +22,9 @@
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/styles.css"/>
         <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>      
+        <script src="js/script.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     </head>
     <body>
         <div class="container-fluid header">

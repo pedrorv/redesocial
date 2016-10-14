@@ -13,7 +13,9 @@
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/styles.css"/>
         <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>      
+        <script src="js/script.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     </head>
     <body>
         <div class="container-fluid header">
@@ -29,7 +31,7 @@
                     <div class="form-group">
                         <label for="username" class="col-sm-2 control-label label-login">Usuário:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="username" placeholder="Entrar com usuário" autofocus>
+                            <input type="text" class="form-control" name="username" placeholder="Entrar com usuário" autofocus required>
                         </div>
                     </div>
                     <input type="submit" value="Logar" class="btn btn-primary col-sm-6 col-sm-offset-3"/>

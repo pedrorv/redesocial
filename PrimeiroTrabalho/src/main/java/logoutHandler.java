@@ -31,6 +31,7 @@ public class logoutHandler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String username = "";
         
         HttpSession session = request.getSession();
