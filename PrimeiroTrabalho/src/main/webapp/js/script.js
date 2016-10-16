@@ -21,3 +21,20 @@ $(document)
             rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
             this.rows = minRows + rows;
         });
+        
+
+$(document).ready(function() {
+    // Prevent redirect until like, comment and share functions are implemented
+
+    $("ul.user-actions li a").on("click", function(e) {
+        e.preventDefault();
+    });
+
+    // Prevent redirect until post function is implemented
+
+    $("form.post-function").on("submit", function(e) {
+        e.preventDefault();
+    });
+});
+
+

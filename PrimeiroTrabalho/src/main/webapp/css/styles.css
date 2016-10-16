@@ -30,25 +30,6 @@ div.main-login {
     padding: 20px;
 }
 
-div.post {
-    border-radius: 10px;
-    border: 2px solid #ccc;
-    background-color: #eee;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-div.post h3 {
-    margin-top: 0;
-    display: inline-block;
-}
-
-div.post h6 {
-    margin-top: 0;
-    display: inline-block;
-    float: right;
-}
-
 div.post-content {
     min-height: 50px;
     padding-top: 10px;
@@ -68,7 +49,7 @@ label.label-login {
 div.header {
     color: #fff;
     background-color: #337ab7;
-    border-bottom: 5px solid #2e6da4;
+    border-bottom: 5px solid #003182;
 }
 
 div.header a {
@@ -89,18 +70,8 @@ ul.header-navigation li a {
     line-height: 40px;
 }
 
-ul.user-actions li {
-    display: inline-block;
-}
-
-ul.user-actions li a {
-    padding: 5px 20px 0 0;
-    font-size: 12px;
-}
-
 ul.header-navigation li a:hover {
-    text-decoration: none; 
-    color: #eee;
+    text-decoration: none;
     background-color: #2e6da4;
 }
 
@@ -113,8 +84,9 @@ ul.header-navigation li:first-child {
 }
 
 ul.header-navigation li:first-child a {
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 35px;
+    font-weight: bold; 
+    color: #eee;
 }
 
 ul.header-navigation li:first-child a:hover {
@@ -126,7 +98,42 @@ div.custom-nav {
     margin: 0 auto;
 }
 
-.login-button {
+.btn {
     font-size: 18px;
     font-weight: bold;
+}
+
+ul.user-actions li {
+    display: inline-block;
+}
+
+ul.user-actions li a {
+    padding: 5px 20px 0 0;
+    font-size: 14px;
+}
+
+div.post {
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background-color: #eee;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+h3.post-author {
+    margin-top: 0;
+    display: inline-block;
+    font-size: 24px;
+}
+
+h6.post-date {
+    margin-top: 0;
+    display: inline-block;
+    float: right;
+    font-size: 14px;
+}
+
+.user-firstname {
+    font-size: 26px;
 }

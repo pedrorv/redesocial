@@ -24,7 +24,7 @@
             <div class="user-info col-sm-4">
                 <h4 class="user-firstname col-sm-offset-1"> ${username} </h4>
                 
-                <form class="form-horizontal" method="POST" action="user/post">
+                <form class="form-horizontal post-function" method="POST" action="user/post">
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-1">
                             <textarea class="form-control auto-expand" 
@@ -32,14 +32,14 @@
                                       placeholder="Solte o verbo!" required></textarea>
                         </div>
                     </div>
-                    <input type="submit" value="Postar" class="btn btn-primary col-sm-3 col-sm-offset-8 post-button"/>
+                    <input type="submit" value="Postar" class="btn btn-success col-sm-3 col-sm-offset-8 post-button"/>
                 </form>
             </div>
             <div class="user-feed col-sm-8">
                 <% for (int i = 0; i < 4; i++) { %>
                 <div class="post col-sm-10 col-sm-offset-1">
-                    <h3>Autor</h3>
-                    <h6>Data</h6>
+                    <h3 class="post-author">Autor</h3>
+                    <h6 class="post-date">Data</h6>
                     <div class="post-content">
                         <p>Conteúdo do post!</p>
                     </div>
