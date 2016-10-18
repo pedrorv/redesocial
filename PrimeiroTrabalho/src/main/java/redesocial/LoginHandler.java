@@ -38,7 +38,7 @@ public class LoginHandler extends HttpServlet {
         
         if (username != null) {
             
-            int id = (new DatabaseDAO()).autorizarUsuario(username);
+            int id = (new DatabaseDAO()).userAuthentication(username);
             
             if (id > 0) {
                 session.setAttribute("username", username);

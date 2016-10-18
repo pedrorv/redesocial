@@ -41,7 +41,7 @@
             </div>
             <div class="user-feed col-sm-8">
                 <% 
-                    ArrayList<Post> feed = (new DatabaseDAO()).lerFeedDeNoticias((int) session.getAttribute("id"),0);
+                    ArrayList<Post> feed = (new DatabaseDAO()).getFeed((int) session.getAttribute("id"),0);
                     
                     for (int i = 0; i < feed.size(); i++) { %>
                     

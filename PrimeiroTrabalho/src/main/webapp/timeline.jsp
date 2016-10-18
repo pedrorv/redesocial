@@ -41,15 +41,15 @@
             </div>
             <div class="user-timeline col-sm-8 col-sm-offset-2">
                 <% 
-                    ArrayList<Post> timeLine = (new DatabaseDAO()).lerLinhaDoTempo((int) session.getAttribute("id"),0);
+                    ArrayList<Post> timeline = (new DatabaseDAO()).getTimeline((int) session.getAttribute("id"),0);
                     
-                    for (int i = 0; i < timeLine.size(); i++) { %>
+                    for (int i = 0; i < timeline.size(); i++) { %>
                     
                 <div class="post col-sm-10 col-sm-offset-1">
-                    <h3 class="post-author"><%= timeLine.get(i).getUsername() %></h3>
-                    <h6 class="post-date"><%= timeLine.get(i).getDate() %></h6>
+                    <h3 class="post-author"><%= timeline.get(i).getUsername() %></h3>
+                    <h6 class="post-date"><%= timeline.get(i).getDate() %></h6>
                     <div class="post-content">
-                        <p><%= timeLine.get(i).getPost() %></p>
+                        <p><%= timeline.get(i).getPost() %></p>
                     </div>
                     <div class="post-actions">
                         <ul class="user-actions">

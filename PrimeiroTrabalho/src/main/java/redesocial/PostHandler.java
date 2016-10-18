@@ -39,7 +39,7 @@ public class PostHandler extends HttpServlet {
         
         if (post != null) {
             
-            (new DatabaseDAO()).inserirNovoPost((int) session.getAttribute("id"), post);
+            (new DatabaseDAO()).insertPost((int) session.getAttribute("id"), post);
             
             response.sendRedirect("../feed.jsp");
          

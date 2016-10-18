@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class DatabaseDAO extends BaseDAO {
 
-    public ArrayList<Post> lerLinhaDoTempo(int userserial, int offset){
+    public ArrayList<Post> getTimeline(int userserial, int offset){
         ArrayList<Post> lista = new ArrayList<>();
         Post post = null;
         try {
@@ -42,7 +42,7 @@ public class DatabaseDAO extends BaseDAO {
         return lista;
     }
 
-    public ArrayList<Post> lerFeedDeNoticias(int userserial, int offset){
+    public ArrayList<Post> getFeed(int userserial, int offset){
         ArrayList<Post> lista = new ArrayList<>();
         Post post = null;
         try {
@@ -81,7 +81,7 @@ public class DatabaseDAO extends BaseDAO {
         return lista;
     }
     
-    public void inserirNovoPost(int userserial,String post){
+    public void insertPost(int userserial,String post){
         try {
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(
@@ -96,7 +96,7 @@ public class DatabaseDAO extends BaseDAO {
         }
     }
     
-    public int autorizarUsuario(String username){
+    public int userAuthentication(String username){
         int result = 0;
         try {
             Connection con = getConnection();
