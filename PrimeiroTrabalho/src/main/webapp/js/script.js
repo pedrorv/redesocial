@@ -4,25 +4,6 @@
  * and open the template in the editor.
  */
 
-// Auto expandable textarea solution from http://codepen.io/vsync/pen/frudD
-// Code by: Yair Even Or (http://codepen.io/vsync/)
-
-$(document)
-        .one('focus.textarea', '.auto-expand', function () {
-            var savedValue = this.value;
-            this.value = '';
-            this.baseScrollHeight = this.scrollHeight;
-            this.value = savedValue;
-        })
-        .on('input.textarea', '.auto-expand', function () {
-            var minRows = this.getAttribute('data-min-rows') | 0,
-                rows;
-            this.rows = minRows;
-            rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
-            this.rows = minRows + rows;
-        });
-        
-
 $(document).ready(function() {
     // Prevent redirect until like, comment and share functions are implemented
 
@@ -47,3 +28,23 @@ function loginError() {
     }, 2000);
 }
 
+
+// Convert URLs to links
+
+function convertLinks() {
+    $("div.post-content p").each(function() {
+        var self = $(this);
+        var text = self[0].textContent;
+        var textArr = text.split(" ");
+        textArr.forEach(function(item, index) {
+           if (IsURL(item)) {
+                var test2 = "http://" + item;
+                if (isValid(test2)) {   
+                    var string = "<a href='http://" + item + "'>" + item + "</a>";
+                    textArr[index] = string;
+                }
+           }
+        });
+        self.html(textArr.join(" "));
+    });
+}

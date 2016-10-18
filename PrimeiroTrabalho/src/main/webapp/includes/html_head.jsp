@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/styles.css"/>
     <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>      
+    <script src="js/bootstrap.min.js"></script>         
+    <script src="js/auxiliarscripts.js"></script>   
     <script src="js/script.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 </head>

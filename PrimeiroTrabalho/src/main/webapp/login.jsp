@@ -13,6 +13,8 @@
     
 %>
 
+<% session.setAttribute("page", "login"); %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

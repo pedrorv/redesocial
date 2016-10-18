@@ -18,6 +18,8 @@
 <%@page import="redesocial.BaseDAO"%>
 <%@page import="redesocial.DatabaseDAO"%>
 
+<% session.setAttribute("page", "feed"); %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -62,5 +64,10 @@
                 <% } %>
             </div>
         </div>
+        <script>
+            $(document).ready(function() {
+               convertLinks(); 
+            });
+        </script>
     </body>
 </html>

@@ -41,7 +41,7 @@ public class PostHandler extends HttpServlet {
             
             (new DatabaseDAO()).insertPost((int) session.getAttribute("id"), post);
             
-            response.sendRedirect("../feed.jsp");
+            response.sendRedirect("../" + session.getAttribute("page") + ".jsp");
          
         }
         
