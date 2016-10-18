@@ -23,7 +23,7 @@
         <%@include file="includes/templates/header.jsp" %>
         <div class="container">
             <div class="main-login col-sm-6 col-sm-offset-3">
-                <form class="form-horizontal" method="POST" action="user/login">
+                <form class="form-horizontal" method="POST" action="user/login" accept-charset="UTF-8">
                     <div class="form-group">
                         <label for="username" class="col-sm-2 control-label label-login">Usuário:</label>
                         <div class="col-sm-10">

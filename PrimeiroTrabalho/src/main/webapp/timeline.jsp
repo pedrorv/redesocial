@@ -30,7 +30,7 @@
             <div class="user-info col-sm-8 col-sm-offset-2">
                 <h4 class="user-firstname col-sm-offset-1"> ${username} </h4>
                 
-                <form class="form-horizontal post-function" method="POST" action="user/post">
+                <form class="form-horizontal post-function" method="POST" action="user/post" accept-charset="UTF-8">
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-1">
                             <textarea class="form-control auto-expand" 
