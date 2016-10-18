@@ -32,9 +32,18 @@ $(document).ready(function() {
 
     // Prevent redirect until post function is implemented
 
-    $("form.post-function").on("submit", function(e) {
-        e.preventDefault();
-    });
+    //$("form.post-function").on("submit", function(e) {;
+    //    e.preventDefault();
+    //});
+    
 });
 
+// Show user login error message
+
+function loginError() {
+    $("div.alert-danger").fadeIn().removeClass("hidden");
+    setTimeout(function() {
+        $("div.alert-danger").fadeOut("hidden");
+    }, 2000);
+}
 

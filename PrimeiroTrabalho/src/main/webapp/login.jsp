@@ -7,7 +7,7 @@
     
     // Redirects to the feed page if user is already logged
     
-    if (session.getAttribute("username") != null && session.getAttribute("username").toString() != "") {
+    if (session.getAttribute("username") != null && session.getAttribute("username").toString() != "" && (int) session.getAttribute("id") != 0) {
         response.sendRedirect("feed.jsp");
     }
     
@@ -21,7 +21,7 @@
         <%@include file="includes/templates/header.jsp" %>
         <div class="container">
             <div class="main-login col-sm-6 col-sm-offset-3">
-                <form class="form-horizontal" method="GET" action="user/login">
+                <form class="form-horizontal" method="POST" action="user/login">
                     <div class="form-group">
                         <label for="username" class="col-sm-2 control-label label-login">Usuário:</label>
                         <div class="col-sm-10">
@@ -31,6 +31,15 @@
                     <input type="submit" value="Logar" class="btn btn-primary col-sm-6 col-sm-offset-3 login-button"/>
                 </form>
             </div>
+            <div class="alert alert-danger hidden col-sm-6 col-sm-offset-3" role="alert">
+                <p>Usuário não encontrado!</p>
+            </div>
         </div>
+        <script>
+            if ("login-error" === "${loginstatus}") {
+                loginError();
+            }
+            <% session.setAttribute("loginstatus", "login-hold"); %>
+        </script>
     </body>
 </html>

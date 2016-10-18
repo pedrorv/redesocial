@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package redesocial;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author pedroreis
  */
-@WebServlet(urlPatterns = {"/user/login"})
-public class LoginHandler extends HttpServlet {
+@WebServlet(name = "PostHandler", urlPatterns = {"/user/post"})
+public class PostHandler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,13 +33,18 @@ public class LoginHandler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String username = request.getParameter("username");
+        String post = request.getParameter("post-content");
         
-        if (username != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute("username", username);
+        HttpSession session = request.getSession();
+        
+        if (post != null) {
+            
+            (new DatabaseDAO()).inserirNovoPost((int) session.getAttribute("id"), post);
+            
             response.sendRedirect("../feed.jsp");
+         
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

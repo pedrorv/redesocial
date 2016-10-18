@@ -3,6 +3,11 @@
     Created on : Oct 13, 2016, 4:58:28 PM
     Author     : pedroreis
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="redesocial.Post"%>
+<%@page import="redesocial.BaseDAO"%>
+<%@page import="redesocial.DatabaseDAO"%>
+
 <%
     
     // Redirects to the login page if user isn't already logged
@@ -36,12 +41,16 @@
                 </form>
             </div>
             <div class="user-feed col-sm-8">
-                <% for (int i = 0; i < 4; i++) { %>
+                <% 
+                    ArrayList<Post> timeLine = (new DatabaseDAO()).lerFeedDeNoticias((int) session.getAttribute("id"),0);
+                    
+                    for (int i = 0; i < timeLine.size(); i++) { %>
+                    
                 <div class="post col-sm-10 col-sm-offset-1">
-                    <h3 class="post-author">Autor</h3>
-                    <h6 class="post-date">Data</h6>
+                    <h3 class="post-author"><%= timeLine.get(i).getUsername() %></h3>
+                    <h6 class="post-date"><%= timeLine.get(i).getDate() %></h6>
                     <div class="post-content">
-                        <p>Conteúdo do post!</p>
+                        <p><%= timeLine.get(i).getPost() %></p>
                     </div>
                     <div class="post-actions">
                         <ul class="user-actions">
@@ -53,6 +62,10 @@
                 </div>
                 <% } %>
             </div>
+            <script>
+                console.log("id", "<%= session.getAttribute("id") %>");
+                console.log("username", "<%= session.getAttribute("username") %>");
+            </script>
         </div>
     </body>
 </html>

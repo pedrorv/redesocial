@@ -1,3 +1,5 @@
+package redesocial;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,9 +35,11 @@ public class LogoutHandler extends HttpServlet {
             throws ServletException, IOException {
         
         String username = "";
+        int id = 0;
         
         HttpSession session = request.getSession();
         session.setAttribute("username", username);
+        session.setAttribute("id", id);
         response.sendRedirect("../login.jsp");
     }
 
