@@ -7,7 +7,7 @@
     
     // Redirects to the feed page if user is already logged
     
-    if (session.getAttribute("username") != null && session.getAttribute("username").toString() != "" && (int) session.getAttribute("id") != 0) {
+    if (session.getAttribute("id") != null && !session.getAttribute("id").toString().equals("0")) {
         response.sendRedirect("feed.jsp");
     }
     

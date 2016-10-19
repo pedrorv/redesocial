@@ -1,4 +1,4 @@
-package redesocial;
+package redesocial.controllers;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,8 +6,8 @@ package redesocial;
  * and open the template in the editor.
  */
 
+import redesocial.db.DatabaseDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author pedroreis
  */
-@WebServlet(urlPatterns = {"/user/logout"})
-public class LogoutHandler extends HttpServlet {
+@WebServlet(urlPatterns = {"/user/login"})
+public class LoginHandler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,13 +34,28 @@ public class LogoutHandler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String username = "";
-        int id = 0;
-        
-        HttpSession session = request.getSession();
-        session.setAttribute("username", username);
-        session.setAttribute("id", id);
-        response.sendRedirect("../login.jsp");
+        try {
+            String username = request.getParameter("username");
+            HttpSession session = request.getSession();
+
+            if (username != null) {
+
+                int id = (new DatabaseDAO()).userAuthentication(username);
+
+                if (id > 0) {
+                    session.setAttribute("username", username);
+                    session.setAttribute("id", id);
+                    session.setAttribute("loginstatus", "login-success");
+                    response.sendRedirect("../feed.jsp");
+                } else {
+                    session.setAttribute("loginstatus", "login-error");
+                    response.sendRedirect("../login.jsp");
+                }
+
+            }
+        } catch (Exception e) {
+            response.sendRedirect("../error.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

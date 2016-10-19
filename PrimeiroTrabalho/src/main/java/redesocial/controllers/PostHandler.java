@@ -1,11 +1,11 @@
-package redesocial;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package redesocial.controllers;
 
+import redesocial.db.DatabaseDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author pedroreis
  */
-@WebServlet(urlPatterns = {"/user/login"})
-public class LoginHandler extends HttpServlet {
+@WebServlet(name = "PostHandler", urlPatterns = {"/user/post"})
+public class PostHandler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,24 +33,23 @@ public class LoginHandler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String username = request.getParameter("username");
-        HttpSession session = request.getSession();
-        
-        if (username != null) {
-            
-            int id = (new DatabaseDAO()).userAuthentication(username);
-            
-            if (id > 0) {
-                session.setAttribute("username", username);
-                session.setAttribute("id", id);
-                session.setAttribute("loginstatus", "login-success");
-                response.sendRedirect("../feed.jsp");
-            } else {
-                session.setAttribute("loginstatus", "login-error");
-                response.sendRedirect("../login.jsp");
+        try {
+            request.setCharacterEncoding("UTF-8");
+            String post = request.getParameter("post-content");
+
+            HttpSession session = request.getSession();
+
+            if (post != null) {
+
+                (new DatabaseDAO()).insertPost((int) session.getAttribute("id"), post);
+
+                response.sendRedirect("../" + session.getAttribute("page") + ".jsp");
+
             }
-         
+        } catch (Exception e) {
+            response.sendRedirect("../error.jsp");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

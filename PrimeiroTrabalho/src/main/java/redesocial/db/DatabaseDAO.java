@@ -1,5 +1,6 @@
-package redesocial;
+package redesocial.db;
 
+import redesocial.db.BaseDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,12 +1,12 @@
+package redesocial.controllers;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package redesocial;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author pedroreis
  */
-@WebServlet(name = "PostHandler", urlPatterns = {"/user/post"})
-public class PostHandler extends HttpServlet {
+@WebServlet(urlPatterns = {"/user/logout"})
+public class LogoutHandler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,19 +33,17 @@ public class PostHandler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        request.setCharacterEncoding("UTF-8");
-        String post = request.getParameter("post-content");
+        String username = "";
+        int id = 0;
         
-        HttpSession session = request.getSession();
-        
-        if (post != null) {
-            
-            (new DatabaseDAO()).insertPost((int) session.getAttribute("id"), post);
-            
-            response.sendRedirect("../" + session.getAttribute("page") + ".jsp");
-         
+        try {
+            HttpSession session = request.getSession();
+            session.setAttribute("username", username);
+            session.setAttribute("id", id);
+            response.sendRedirect("../login.jsp");
+        } catch (Exception e) {
+            response.sendRedirect("../error.jsp");
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

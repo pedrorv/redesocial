@@ -1,4 +1,4 @@
-package redesocial;
+package redesocial.db;
 
 import java.sql.Connection;
 import javax.naming.InitialContext;

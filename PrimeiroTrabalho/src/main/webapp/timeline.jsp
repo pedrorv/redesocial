@@ -7,16 +7,16 @@
     
     // Redirects to the login page if user isn't already logged
     
-    if (session.getAttribute("username") == null || session.getAttribute("username").toString() == "") {
+    if (session.getAttribute("id") == null && session.getAttribute("id").toString().equals("0")) {
         response.sendRedirect("login.jsp");
     }
     
 %>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="redesocial.Post"%>
-<%@page import="redesocial.BaseDAO"%>
-<%@page import="redesocial.DatabaseDAO"%>
+<%@page import="redesocial.db.Post"%>
+<%@page import="redesocial.db.BaseDAO"%>
+<%@page import="redesocial.db.DatabaseDAO"%>
 
 <% session.setAttribute("page", "timeline"); %>
 
