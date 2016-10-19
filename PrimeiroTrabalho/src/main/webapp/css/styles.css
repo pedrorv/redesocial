@@ -93,8 +93,7 @@ ul.header-navigation li:first-child {
 
 ul.header-navigation li:first-child a {
     font-size: 35px;
-    font-weight: bold; 
-    color: #eee;
+    font-weight: bold;
 }
 
 ul.header-navigation li:first-child a:hover {
