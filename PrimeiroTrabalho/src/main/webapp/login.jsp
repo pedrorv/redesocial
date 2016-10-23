@@ -41,7 +41,9 @@
             if ("login-error" === "${loginstatus}") {
                 loginError();
             }
-            <% session.setAttribute("loginstatus", "login-hold"); %>
         </script>
     </body>
 </html>
+
+<% session.setAttribute("loginstatus", "login-hold"); %>
+

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/">
     <Resource name="jdbc/redesocial"
-                  type="javax.sql.DataSource"
-                  auth="Container"
-                  username="pedroreis"
-                  password=""
-                  driverClassName="org.postgresql.Driver"
-                  url="jdbc:postgresql://localhost:5432/redesocial"
-                  maxActive="8"
-                  maxIdle="4"    />
+              type="javax.sql.DataSource"
+              auth="Container"
+              username="pedroreis"
+              password=""
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/redesocial"
+              maxActive="8"
+              maxIdle="4"  />
 </Context>
