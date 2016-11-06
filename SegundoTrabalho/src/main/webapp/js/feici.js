@@ -6,28 +6,10 @@
 
 
 function Feici () {
+    var self = this;
+
     // Page loaders
-    
-    this.loadIndex = function () {
-      $('.page').addClass('hidden');
-      $('.header-items').addClass('hidden');
-      $('#header-login').removeClass('hidden');
-      $('#index').removeClass('hidden');
-    };
-    
-    this.loadLogin = function () {
-      $('.page').addClass('hidden');
-      $('.header-items').addClass('hidden');
-      $('#login').removeClass('hidden');
-    };
-    
-    this.loadSignup = function () {
-      $('.page').addClass('hidden');
-      $('.header-items').addClass('hidden');
-      $('#signup').removeClass('hidden');
-      $('#header-login').removeClass('hidden');
-    };
-    
+       
     this.loadFeed = function () {
       $('.page').addClass('hidden');
       $('.header-items').addClass('hidden');
@@ -42,32 +24,81 @@ function Feici () {
       $('#timeline').removeClass('hidden');
     };
     
-    this.loadError = function () {
-      $('.page').addClass('hidden');
-      $('.header-items').addClass('hidden');
-      $('#header-feed').removeClass('hidden');
-      $('#header-timeline').removeClass('hidden');
-      $('#header-logout').removeClass('hidden');
-      $('#error').removeClass('hidden');
-    };
-    
     // Buttons events
     
-    /*this.showFeed = function() {;
+    $("#header-timeline").on("click", function() {
+        self.showTimeline(); 
+    });
+    
+    $("#header-feed").on("click", function() {
+        self.showFeed(); 
+    });
+    
+    this.showFeed = function() {
         $.ajax({
-            url: '/' + id,
-            dataType: 'json',
+            url: '/users/feed',
+            dataType: 'text',
             cache: false
         }).done(function (data) {
-            d3.select('svg').remove()
-            if ( id === "two" || id === "three" ) {
-              $("pre#json").html(JSON.stringify(data, null, 2))
-            } else {
-              $("pre#json").html("")
-              drawGraph(data)
-            }
-        })
-    };*/
+            var posts = JSON.parse(data);
+            var postsDiv = $("div.user-feed").html("");
+            
+            posts.forEach(function(post, index) {
+                var postElement = '<div class="post col-sm-10 col-sm-offset-1">' +
+                                    '<h3 class="post-author">' + post.username + '</h3>' +
+                                    '<h6 class="post-date">' + post.date + '</h6>' +
+                                    '<div class="post-content">' + 
+                                        '<p>' + post.post + '</p>' +
+                                    '</div>' + 
+                                    '<div class="post-actions">' +
+                                        '<ul class="user-actions">' + 
+                                            '<li><a href="user/like">Curtir</a></li>' + 
+                                            '<li><a href="user/comment">Comentar</a></li>' + 
+                                            '<li><a href="user/share">Compartilhar</a></li>' +
+                                        '</ul>' +
+                                    '</div>' + 
+                                '</div>';
+                        
+                postsDiv.append(postElement);                           
+            });
+            
+            convertLinks();
+            self.loadFeed();
+        });
+    };
+    
+    this.showTimeline = function() {
+        $.ajax({
+            url: '/users/timeline',
+            dataType: 'text',
+            cache: false
+        }).done(function (data) {
+            var posts = JSON.parse(data);
+            var postsDiv = $("div.user-timeline").html("");
+            
+            posts.forEach(function(post, index) {      
+                var postElement = '<div class="post col-sm-10 col-sm-offset-1">' +
+                                    '<h3 class="post-author">' + post.username + '</h3>' +
+                                    '<h6 class="post-date">' + post.date + '</h6>' +
+                                    '<div class="post-content">' + 
+                                        '<p>' + post.post + '</p>' +
+                                    '</div>' + 
+                                    '<div class="post-actions">' +
+                                        '<ul class="user-actions">' + 
+                                            '<li><a href="user/like">Curtir</a></li>' + 
+                                            '<li><a href="user/comment">Comentar</a></li>' + 
+                                            '<li><a href="user/share">Compartilhar</a></li>' +
+                                        '</ul>' +
+                                    '</div>' + 
+                                '</div>';
+                        
+                postsDiv.append(postElement);                           
+            });
+            
+            convertLinks();
+            self.loadTimeline();
+        });
+    };
 }
 
 var feici = new Feici();

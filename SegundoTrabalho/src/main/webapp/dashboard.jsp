@@ -19,18 +19,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
+    <%@include file="includes/html_head.jsp" %>
     <body>
         <div class="container-fluid header">
             <div class="custom-nav">
                 <ul class="header-navigation">
                     <li><a href="index.jsp">Feici</a></li>
-                    <li class="header-items hidden" id="header-logout"><a href="user/logout">Logout</a></li>
-                    <li class="header-items hidden" id="header-timeline"><a href="timeline.jsp">Linha do Tempo</a></li>
-                    <li class="header-items hidden" id="header-feed"><a href="feed.jsp">Feed</a></li>
+                    <li class="header-items" id="header-logout"><a href="user/logout">Logout</a></li>
+                    <li class="header-items hidden" id="header-timeline"><p>Linha do Tempo</p></li>
+                    <li class="header-items hidden" id="header-feed"><p>Feed</p></li>
                 </ul>
             </div>
         </div>
@@ -81,7 +78,7 @@
                     
         <script src="js/feici.js"></script>
         <script>
-            feici.loadFeed();
+            feici.showFeed();
         </script>
     </body>
 </html>

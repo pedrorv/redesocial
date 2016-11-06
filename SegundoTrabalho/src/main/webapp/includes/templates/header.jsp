@@ -23,20 +23,13 @@
                 if (session.getAttribute("id") != null && !session.getAttribute("id").toString().equals("0")) { %>
             
             <li><a href="user/logout">Logout</a></li>
-            
-            <% } 
-                // Returns timeline option if user is logged and on feed page
-                
-                if ( session.getAttribute("id") != null && !session.getAttribute("id").toString().equals("0") ) { %>
-            
-            <li><a href="timeline.jsp">Linha do Tempo</a></li>
-            
+
             <% } 
                 // Returns feed option if user is logged and on timeline page
                 
                 if ( session.getAttribute("id") != null && !session.getAttribute("id").toString().equals("0") ) { %>
             
-            <li><a href="feed.jsp">Feed</a></li>
+            <li><a href="dashboard.jsp">Feed</a></li>
             
             <% } %>
             <% 

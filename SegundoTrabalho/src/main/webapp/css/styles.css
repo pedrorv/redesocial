@@ -60,9 +60,13 @@ div.header {
     border-bottom: 5px solid #003182;
 }
 
-div.header a {
+div.header a, div.header p {
     text-decoration: none;
     color: #fff;
+}
+
+ul.header-navigation p {
+    margin: 0;
 }
 
 ul.header-navigation, ul.user-actions {
@@ -71,16 +75,17 @@ ul.header-navigation, ul.user-actions {
     padding: 0;
 }
 
-ul.header-navigation li a {
+ul.header-navigation li a, ul.header-navigation li p {
     padding: 10px 20px;
     font-size: 20px;
     display: inline-block;
     line-height: 40px;
 }
 
-ul.header-navigation li a:hover {
+ul.header-navigation li a:hover, ul.header-navigation li p:hover {
     text-decoration: none;
     background-color: #2e6da4;
+    cursor: pointer;
 }
 
 ul.header-navigation li {

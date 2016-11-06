@@ -1,9 +1,10 @@
+package redesocial.controllers;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package redesocial.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,8 +22,8 @@ import redesocial.db.Post;
  *
  * @author pedroreis
  */
-@WebServlet(urlPatterns = {"/users/feed"})
-public class FeedHandler extends HttpServlet {
+@WebServlet(urlPatterns = {"/users/timeline"})
+public class TimelineHandler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,7 +52,7 @@ public class FeedHandler extends HttpServlet {
                 offset = ((int) session.getAttribute("feed-offset")) + 15;
             }
             
-            ArrayList<Post> feed = (new DatabaseDAO()).getFeed(userID, offset);
+            ArrayList<Post> feed = (new DatabaseDAO()).getTimeline(userID, offset);
             if (feed.size() < 15) {
                 session.setAttribute("feed-offset", null);
             }
@@ -73,7 +74,7 @@ public class FeedHandler extends HttpServlet {
         } catch (Exception e) {
             response.sendRedirect("../error.jsp");
         }
-    
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
