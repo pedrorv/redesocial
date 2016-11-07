@@ -30,15 +30,15 @@
                      Mauris blandit libero mauris. Nam in pharetra dui.</p>
                 </div>
                 <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
+                <div class="col-md-8 col-md-offset-2">
                     <form class="form-horizontal" method="POST" action="users/signup" accept-charset="UTF-8">
                         <div class="form-group">
-                            <label for="username" class="col-sm-2 control-label label-login">Usuário:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="username" placeholder="Entrar com usuário" autocomplete="off" pattern="[A-Z]{3,15}" title="Username should only contain uppercase letters and have 3 to 15 characters. Ex: JOHN" required>
+                            <label for="username" class="col-md-2 control-label label-login">Usuário:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="username" placeholder="Entrar com usuário" autocomplete="off" pattern="[A-Z]{3,15}" title="Nomes de usuário devem conter de 3 a 15 letras maiúsculas e sem caracteres especiais. Ex: JOAO" required>
                             </div>
                         </div>
-                        <input type="submit" value="Cadastrar" class="btn btn-primary col-sm-6 col-sm-offset-3 login-button"/>
+                        <input type="submit" value="Cadastrar" class="btn btn-primary col-md-6 col-md-offset-3 login-button"/>
                     </form>
                 </div>    
                 </div>
@@ -46,11 +46,11 @@
         </div>            
 
         <div class="container">
-            <div class="alert alert-danger hidden col-sm-6 col-sm-offset-3" role="alert">
+            <div class="alert alert-danger hidden col-md-6 col-md-offset-3" role="alert">
                 <p>Nome de usuário não disponível!</p>
             </div>
             
-            <div class="alert alert-success hidden col-sm-6 col-sm-offset-3" role="alert">
+            <div class="alert alert-success hidden col-md-6 col-md-offset-3" role="alert">
                 <p>Usuário cadastrado com sucesso!</p>
             </div>
         </div>

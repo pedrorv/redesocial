@@ -22,18 +22,18 @@
     <body>
         <%@include file="includes/templates/header.jsp" %>
         <div class="container">
-            <div class="main-login col-sm-6 col-sm-offset-3">
+            <div class="main-login col-md-6 col-md-offset-3">
                 <form class="form-horizontal" method="POST" action="user/login" accept-charset="UTF-8">
                     <div class="form-group">
-                        <label for="username" class="col-sm-2 control-label label-login">Usuário:</label>
-                        <div class="col-sm-10">
+                        <label for="username" class="col-md-2 control-label label-login">Usuário:</label>
+                        <div class="col-md-10">
                             <input type="text" class="form-control" name="username" placeholder="Entrar com usuário" autofocus required>
                         </div>
                     </div>
-                    <input type="submit" value="Logar" class="btn btn-primary col-sm-6 col-sm-offset-3 login-button"/>
+                    <input type="submit" value="Logar" class="btn btn-primary col-md-6 col-md-offset-3 login-button"/>
                 </form>
             </div>
-            <div class="alert alert-danger hidden col-sm-6 col-sm-offset-3" role="alert">
+            <div class="alert alert-danger hidden col-md-6 col-md-offset-3" role="alert">
                 <p>Usuário não encontrado!</p>
             </div>
         </div>

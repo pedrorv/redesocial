@@ -44,7 +44,7 @@ function Feici () {
             var postsDiv = $("div.user-feed").html("");
             
             posts.forEach(function(post, index) {
-                var postElement = '<div class="post col-sm-10 col-sm-offset-1">' +
+                var postElement = '<div class="post col-md-10 col-md-offset-1">' +
                                     '<h3 class="post-author">' + post.username + '</h3>' +
                                     '<h6 class="post-date">' + post.date + '</h6>' +
                                     '<div class="post-content">' + 
@@ -77,7 +77,7 @@ function Feici () {
             var postsDiv = $("div.user-timeline").html("");
             
             posts.forEach(function(post, index) {      
-                var postElement = '<div class="post col-sm-10 col-sm-offset-1">' +
+                var postElement = '<div class="post col-md-10 col-md-offset-1">' +
                                     '<h3 class="post-author">' + post.username + '</h3>' +
                                     '<h6 class="post-date">' + post.date + '</h6>' +
                                     '<div class="post-content">' + 

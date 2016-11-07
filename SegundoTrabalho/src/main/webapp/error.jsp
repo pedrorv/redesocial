@@ -14,7 +14,7 @@
         <%@include file="includes/templates/header.jsp" %>
         
         <div class="container">
-            <div class="alert alert-danger col-sm-6 col-sm-offset-3" role="alert">
+            <div class="alert alert-danger col-md-6 col-md-offset-3" role="alert">
                 <p>Ocorreu algum erro durante sua requisição. Utilize o menu para ir à página desejada.</p>
             </div>
         </div>

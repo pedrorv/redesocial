@@ -146,6 +146,19 @@ h6.post-date {
     font-size: 14px;
 }
 
+h5 {
+    font-size: 22px;
+}
+
 .user-firstname {
     font-size: 26px;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+div.find-friends {
+    padding: 0;
 }

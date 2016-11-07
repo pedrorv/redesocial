@@ -46,25 +46,25 @@ public class TimelineHandler extends HttpServlet {
             int userID = (int) session.getAttribute("id");
             int offset;
             
-            if (session.getAttribute("feed-offset") == null) {
+            if (session.getAttribute("timeline-offset") == null) {
                 offset = 0;
             } else {
-                offset = ((int) session.getAttribute("feed-offset")) + 15;
+                offset = ((int) session.getAttribute("timeline-offset")) + 15;
             }
             
-            ArrayList<Post> feed = (new DatabaseDAO()).getTimeline(userID, offset);
-            if (feed.size() < 15) {
-                session.setAttribute("feed-offset", null);
+            ArrayList<Post> timeline = (new DatabaseDAO()).getTimeline(userID, offset);
+            if (timeline.size() < 15) {
+                session.setAttribute("timeline-offset", null);
             }
             
             String JSON = "[";
             
-            for (int i = 0; i < feed.size(); i++) {
+            for (int i = 0; i < timeline.size(); i++) {
                 JSON += "{";
-                JSON += "\"username\": \"" + feed.get(i).getUsername() + "\",";
-                JSON += "\"post\": \"" + feed.get(i).getPost() + "\",";
-                JSON += "\"date\": \"" + feed.get(i).getDate() + "\"}";
-                if (i != feed.size() - 1) {
+                JSON += "\"username\": \"" + timeline.get(i).getUsername() + "\",";
+                JSON += "\"post\": \"" + timeline.get(i).getPost() + "\",";
+                JSON += "\"date\": \"" + timeline.get(i).getDate() + "\"}";
+                if (i != timeline.size() - 1) {
                     JSON += ",";
                 }
             }           
