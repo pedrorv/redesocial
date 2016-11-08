@@ -39,7 +39,7 @@ function requestSuccess() {
 // Convert URLs to links
 
 function convertLinks() {
-    $("div.post-content p").each(function() {
+    $("div.post-content pre").each(function() {
         var self = $(this);
         var text = self[0].textContent;
         var textArr = text.split(" ");

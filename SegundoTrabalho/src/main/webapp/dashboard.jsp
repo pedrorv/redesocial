@@ -59,6 +59,9 @@
                 <div class="user-feed col-md-8">
                     
                 </div>
+                <div class="col-md-8 col-md-offset-4">
+                    <button class="btn btn-info col-md-10 col-md-offset-1" id="get-more-feed">Ver posts mais antigos</button>
+                </div>
             </div>
         </div>
         
@@ -81,9 +84,11 @@
                 <div class="user-timeline col-md-8 col-md-offset-2">
                     
                 </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <button class="btn btn-info col-md-10 col-md-offset-1" id="get-more-timeline">Ver posts mais antigos</button>
+                </div>
             </div>
         </div>
-                    
         <script src="js/feici.js"></script>
         <script>
             feici.showFeed();

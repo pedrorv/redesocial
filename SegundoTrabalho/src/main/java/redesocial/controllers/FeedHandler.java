@@ -45,16 +45,15 @@ public class FeedHandler extends HttpServlet {
             int userID = (int) session.getAttribute("id");
             int offset;
             
-            if (session.getAttribute("feed-offset") == null) {
+            if (request.getParameter("offset") == null) {
                 offset = 0;
             } else {
-                offset = ((int) session.getAttribute("feed-offset")) + 15;
+                offset = Integer.parseInt(request.getParameter("offset"));
             }
             
+            System.out.println(offset);
+            
             ArrayList<Post> feed = (new DatabaseDAO()).getFeed(userID, offset);
-            if (feed.size() < 15) {
-                session.setAttribute("feed-offset", null);
-            }
             
             String JSON = "[";
             

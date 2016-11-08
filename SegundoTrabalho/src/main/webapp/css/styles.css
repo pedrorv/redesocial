@@ -162,3 +162,7 @@ textarea {
 div.find-friends {
     padding: 0;
 }
+
+.btn-info {
+    margin-bottom: 20px;
+}

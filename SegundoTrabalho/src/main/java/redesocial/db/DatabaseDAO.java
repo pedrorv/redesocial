@@ -18,7 +18,7 @@ public class DatabaseDAO extends BaseDAO {
                 "select T4.userserial,T4.username,T5.datahora,T5.post" +
                 " from usuarios T4, posts T5\n" +
                 " where T5.userserial=? and T4.userserial=?\n" +
-                " order by datahora desc offset ? limit 50;"      
+                " order by datahora desc offset ? limit 10;"      
             );
             pstmt.setInt(1, userserial);
             pstmt.setInt(2, userserial);
@@ -54,7 +54,7 @@ public class DatabaseDAO extends BaseDAO {
 " group by T1.userserial,T1.username,T2.datahora,T2.post) union\n" +
 " (select T4.userserial,T4.username,T5.datahora,T5.post from usuarios T4, posts T5\n" +
 " where (T5.userserial=? and T4.userserial=?))\n" +
-" order by datahora desc offset ? limit 50;"      
+" order by datahora desc offset ? limit 10;"      
             );
             pstmt.setInt(1, userserial);
             pstmt.setInt(2, userserial);
