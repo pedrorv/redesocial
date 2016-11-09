@@ -5,7 +5,7 @@
 --%>
 
 <%
-    
+
     // Redirects to the login page if user isn't already logged
     
     if (session.getAttribute("id") == null || session.getAttribute("id").toString().equals("0")) {

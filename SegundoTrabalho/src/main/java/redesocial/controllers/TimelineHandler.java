@@ -44,13 +44,7 @@ public class TimelineHandler extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             int userID = (int) session.getAttribute("id");
-            int offset;
-            
-            if (request.getParameter("offset") == null) {
-                offset = 0;
-            } else {
-                offset = Integer.parseInt(request.getParameter("offset"));
-            }
+            int offset = Integer.parseInt(request.getParameter("offset"));
             
             ArrayList<Post> timeline = (new DatabaseDAO()).getTimeline(userID, offset);
             

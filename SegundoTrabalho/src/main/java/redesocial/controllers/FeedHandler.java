@@ -43,16 +43,8 @@ public class FeedHandler extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             int userID = (int) session.getAttribute("id");
-            int offset;
-            
-            if (request.getParameter("offset") == null) {
-                offset = 0;
-            } else {
-                offset = Integer.parseInt(request.getParameter("offset"));
-            }
-            
-            System.out.println(offset);
-            
+            int offset = Integer.parseInt(request.getParameter("offset"));
+                        
             ArrayList<Post> feed = (new DatabaseDAO()).getFeed(userID, offset);
             
             String JSON = "[";
