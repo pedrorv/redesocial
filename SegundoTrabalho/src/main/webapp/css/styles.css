@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-    width: 75%;
+    width: 85%;
 }
 
 div.main-content {
@@ -106,7 +106,7 @@ ul.header-navigation li:first-child a:hover {
 }
 
 div.custom-nav {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 

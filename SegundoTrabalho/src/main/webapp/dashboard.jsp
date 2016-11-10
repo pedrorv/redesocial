@@ -91,7 +91,7 @@
         </div>
         <script src="js/feici.js"></script>
         <script>
-            feici.showFeed();
+            feici.loadPosts('feed', 'timeline');
         </script>
     </body>
 </html>
