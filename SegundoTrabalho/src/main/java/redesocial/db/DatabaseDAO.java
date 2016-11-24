@@ -15,7 +15,7 @@ public class DatabaseDAO extends BaseDAO {
         try {
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(
-                "select T4.userserial,T4.username,T5.datahora,T5.post" +
+                "select T4.userserial,T4.username,T5.datahora,T5.post,T5.postserial" +
                 " from usuarios T4, posts T5\n" +
                 " where T5.userserial=? and T4.userserial=?\n" +
                 " order by datahora desc offset ? limit 10;"      
@@ -32,6 +32,7 @@ public class DatabaseDAO extends BaseDAO {
                                 .format(rst.getTimestamp("datahora"));
                 post.setDate(datahora);
                 post.setPost(rst.getString("post"));
+                post.setId(rst.getString("postserial"));
                 lista.add(post);
             }
             con.close();
@@ -48,11 +49,11 @@ public class DatabaseDAO extends BaseDAO {
         try {
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(
-"(select T1.userserial,T1.username,T2.datahora,T2.post from usuarios T1\n" +
+"(select T1.userserial,T1.username,T2.datahora,T2.post,T2.postserial from usuarios T1 \n" +
 " join posts T2 on (T2.userserial=T1.userserial)\n" +
 " join amigos T3 on (T3.userserial=? and T1.userserial=T3.amigoserial)\n" +
-" group by T1.userserial,T1.username,T2.datahora,T2.post) union\n" +
-" (select T4.userserial,T4.username,T5.datahora,T5.post from usuarios T4, posts T5\n" +
+" group by T1.userserial,T1.username,T2.datahora,T2.post,T2.postserial) union\n" +
+" (select T4.userserial,T4.username,T5.datahora,T5.post,T5.postserial from usuarios T4, posts T5\n" +
 " where (T5.userserial=? and T4.userserial=?))\n" +
 " order by datahora desc offset ? limit 10;"      
             );
@@ -71,6 +72,7 @@ public class DatabaseDAO extends BaseDAO {
                 post.setDate(datahora);
                 
                 post.setPost(rst.getString("post"));
+                post.setId(rst.getString("postserial"));
                 lista.add(post);
             }
             con.close();

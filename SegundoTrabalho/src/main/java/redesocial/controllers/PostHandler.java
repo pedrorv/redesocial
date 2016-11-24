@@ -33,8 +33,11 @@ public class PostHandler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        
         try {
-            request.setCharacterEncoding("UTF-8");
             String post = request.getParameter("post-content");
 
             HttpSession session = request.getSession();
@@ -43,11 +46,11 @@ public class PostHandler extends HttpServlet {
 
                 (new DatabaseDAO()).insertPost((int) session.getAttribute("id"), post);
 
-                response.sendRedirect("../" + session.getAttribute("page") + ".jsp");
+                response.getWriter().write("{ \"error\": false }");
 
             }
         } catch (Exception e) {
-            response.sendRedirect("../error.jsp");
+            response.getWriter().write("{ \"error\": true }");
         }
         
     }

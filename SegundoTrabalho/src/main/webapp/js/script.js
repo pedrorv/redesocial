@@ -38,20 +38,16 @@ function requestSuccess() {
 
 // Convert URLs to links
 
-function convertLinks() {
-    $("div.post-content pre").each(function() {
-        var self = $(this);
-        var text = self[0].textContent;
-        var textArr = text.split(" ");
-        textArr.forEach(function(item, index) {
-           if (IsURL(item)) {
-                var test2 = "http://" + item;
-                if (isValid(test2)) {   
-                    var string = "<a href='http://" + item + "'>" + item + "</a>";
-                    textArr[index] = string;
-                }
-           }
-        });
-        self.html(textArr.join(" "));
+function convertLinks(text) {
+    var textArr = text.split(" ");
+    textArr.forEach(function(item, index) {
+        if (IsURL(item)) {
+            var test2 = "http://" + item;
+            if (isValid(test2)) {   
+                var string = "<a href='http://" + item + "'>" + item + "</a>";
+                textArr[index] = string;
+            }
+        }
     });
+    return textArr.join(" ");
 }

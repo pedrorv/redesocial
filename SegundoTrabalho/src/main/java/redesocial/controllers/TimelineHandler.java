@@ -22,7 +22,7 @@ import redesocial.db.Post;
  *
  * @author pedroreis
  */
-@WebServlet(urlPatterns = {"/users/timeline"})
+@WebServlet(urlPatterns = {"/user/timeline"})
 public class TimelineHandler extends HttpServlet {
 
     /**
@@ -52,6 +52,7 @@ public class TimelineHandler extends HttpServlet {
             
             for (int i = 0; i < timeline.size(); i++) {
                 JSON += "{";
+                JSON += "\"id\": " + timeline.get(i).getId() + ",";
                 JSON += "\"username\": \"" + timeline.get(i).getUsername() + "\",";
                 JSON += "\"post\": \"" + timeline.get(i).getPost() + "\",";
                 JSON += "\"date\": \"" + timeline.get(i).getDate() + "\"}";
@@ -63,7 +64,7 @@ public class TimelineHandler extends HttpServlet {
  
             response.getWriter().write(JSON);         
         } catch (Exception e) {
-            response.sendRedirect("../error.jsp");
+            response.getWriter().write("{ \"error\": true }");
         }
         
     }

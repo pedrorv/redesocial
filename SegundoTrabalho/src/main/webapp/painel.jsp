@@ -14,7 +14,7 @@
     
 %>
 
-<% session.setAttribute("page", "dashboard"); %>
+<% session.setAttribute("page", "painel"); %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -40,12 +40,12 @@
                     <form class="form-horizontal post-function" method="POST" action="user/post" accept-charset="UTF-8">
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-1">
-                                <textarea class="form-control auto-expand" 
+                                <textarea id="feed-post-area" class="form-control auto-expand" 
                                           name="post-content" rows="2" data-min-rows="2" 
                                           placeholder="No que você está pensando?" required></textarea>
                             </div>
                         </div>
-                        <input type="submit" value="Postar" class="btn btn-success col-md-3 col-md-offset-8 post-button"/>
+                        <input id="feed-post-btn" type="submit" value="Postar" class="btn btn-success col-md-4 col-md-offset-7 post-button"/>
                     </form>
                     
                     <div class="col-md-offset-1 col-md-10 row find-friends">
@@ -73,12 +73,12 @@
                     <form class="form-horizontal post-function" method="POST" action="user/post" accept-charset="UTF-8">
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-1">
-                                <textarea class="form-control auto-expand" 
+                                <textarea id="timeline-post-area" class="form-control auto-expand" 
                                           name="post-content" rows="2" data-min-rows="2" 
                                           placeholder="No que você está pensando?" required></textarea>
                             </div>
                         </div>
-                        <input type="submit" value="Postar" class="btn btn-success col-md-3 col-md-offset-8 post-button"/>
+                        <input id="timeline-post-btn" type="submit" value="Postar" class="btn btn-success col-md-4 col-md-offset-7 post-button"/>
                     </form>
                 </div>
                 <div class="user-timeline col-md-8 col-md-offset-2">
@@ -91,7 +91,7 @@
         </div>
         <script src="js/feici.js"></script>
         <script>
-            feici.loadPosts('feed', 'timeline');
+            feici.loadPosts('feed');
         </script>
     </body>
 </html>

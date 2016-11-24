@@ -8,7 +8,7 @@
     // Redirects to the feed page if user is already logged
     
     if (session.getAttribute("id") != null && !session.getAttribute("id").toString().equals("0")) {
-        response.sendRedirect("dashboard.jsp");
+        response.sendRedirect("painel.jsp");
     }
     
 %>

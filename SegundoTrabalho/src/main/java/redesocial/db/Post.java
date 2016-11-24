@@ -14,6 +14,11 @@ public class Post {
     private String username;
     private String date;
     private String post;
+    private String id;
+    
+    public void setId(String id) {
+        this.id = id;
+    }
     
     public void setUsername(String username) {
         this.username = username;
@@ -25,6 +30,10 @@ public class Post {
     
     public void setPost(String post) {
         this.post = post;
+    }
+    
+    public String getId() {
+        return this.id;
     }
     
     public String getUsername() {

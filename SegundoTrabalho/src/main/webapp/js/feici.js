@@ -6,9 +6,11 @@
 
 
 function Feici () {
-    // Page loaders
+    var _this = this;
     
-    this.showPage = function(page, nav) {
+    // Page loader
+    
+    var showPage = function(page, nav) {
         $('.page').addClass('hidden');
         $('.header-items').addClass('hidden');
         $('#header-' + nav).removeClass('hidden');
@@ -18,65 +20,116 @@ function Feici () {
     // Buttons events
     
     $("#header-timeline").on("click", function() {
-        this.loadPosts('timeline', 'feed'); 
-    }.bind(this));
+        if ($("div.user-timeline").find('div.post-timeline').length > 0) {
+            showPage('timeline', 'feed');
+        } else {
+            _this.loadPosts('timeline'); 
+        }
+    });
     
     $("#header-feed").on("click", function() {
-        this.loadPosts('feed', 'timeline'); 
-    }.bind(this));
+        if ($("div.user-feed").find('div.post-feed').length > 0) {
+            showPage('feed', 'timeline');
+        } else {
+            _this.loadPosts('feed');
+        }
+    });
     
     $("#get-more-feed").on("click", function() {
-        this.loadPosts('feed', 'timeline');
-    }.bind(this));
+        _this.loadPosts('feed');
+    });
     
     $("#get-more-timeline").on("click", function() {
-        this.loadPosts('timeline', 'feed'); 
-    }.bind(this));
+        _this.loadPosts('timeline'); 
+    });
     
-    this.loadPosts = function (page, nav) {
-        var postsDiv = $("div.user-" + page);
-        var postsDivContent = postsDiv.html();
-        var offset = postsDiv.find('div.post-' + page).length;
+    $("input.post-button").on("click", function(e) {
+        e.preventDefault();
+        var id = e.target.id;
+        var textID = (id === 'feed-post-btn') ? '#feed-post-area' : '#timeline-post-area';
+        var page = (id === 'feed-post-btn') ? 'feed' : 'timeline';
+        
+        $.ajax({
+            url: '/user/post',
+            method: 'POST',
+            dataType: 'text',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: $.param({ 'post-content': encodeURIComponent($(textID).val()) }),
+            success: function (data) {
+                var response = JSON.parse(data);
+                if (response.error) {
+                    window.location.href = '/error.jsp';
+                } else {
+                    _this.loadPosts(page, 'new');
+                }
+            }
+        });
+        
+        $(textID).val('');
+        $(textID).attr('rows', 2);
+    });
+    
+    // Posts loader
+    
+    this.loadPosts = function (page, from) {
+        var postsDiv = $("div.user-" + page);        
+        var offset = (from === 'new') ? 0 : postsDiv.find('div.post-' + page).length;
         var offsetParameter = "?offset=" + offset;
+        var nav = (page === 'feed') ? 'timeline' : 'feed';
                 
         $("#get-more-" + page).html("Buscando posts...");
         
         $.ajax({
-            url: '/users/' + page + offsetParameter,
+            url: '/user/' + page + offsetParameter,
             dataType: 'text',
-            cache: false
-        }).done(function (data) {
-            var posts = JSON.parse(data);
-            postsDiv.html("");
-            
-            posts.forEach(function(post, index) {
-                var postElement = '<div class="post post-' + page + ' col-md-10 col-md-offset-1">' +
-                                    '<h3 class="post-author">' + post.username + '</h3>' +
-                                    '<h6 class="post-date">' + post.date + '</h6>' +
-                                    '<div class="post-content">' + 
-                                        '<pre>' + post.post + '</pre>' +
-                                    '</div>' + 
-                                    '<div class="post-actions">' +
-                                        '<ul class="user-actions">' + 
-                                            '<li><a href="user/like">Curtir</a></li>' + 
-                                            '<li><a href="user/comment">Comentar</a></li>' + 
-                                            '<li><a href="user/share">Compartilhar</a></li>' +
-                                        '</ul>' +
-                                    '</div>' + 
-                                '</div>';
+            method: 'POST',
+            success: function (data) {
+                var posts = JSON.parse(data);
+                if (posts.error) {
+                    window.location.href = '/error.jsp';
+                } else {
+                    
+                    // Reverse the order if new post
+                    if (offset === 0) {
+                        posts = posts.reverse();
+                    }
+                    posts.forEach(function(post, index) {
                         
-                postsDiv.append(postElement);                           
-            });
-            
-            convertLinks();
-            postsDiv.prepend(postsDivContent);
-            
-            $("#get-more-" + page).html("Ver posts mais antigos");
-            
-            if ($("div#" + page).hasClass('hidden')) {
-                this.showPage(page, nav);
+                        // Only insert a new post
+                        if ($("div.user-" + page).find("div#post-" + page + '-' + post.id).length === 0) {
+                            var postElement =   '<div id="post-' + page + '-' + post.id + '" class="post post-' + page + ' col-md-10 col-md-offset-1">' +
+                                                '<h3 class="post-author">' + post.username + '</h3>' +
+                                                '<h6 class="post-date">' + post.date + '</h6>' +
+                                                '<div class="post-content">' + 
+                                                    '<pre>' + convertLinks(decodeURIComponent(post.post)) + '</pre>' +
+                                                '</div>' + 
+                                                '<div class="post-actions">' +
+                                                    '<ul class="user-actions">' + 
+                                                        '<li><a href="user/like">Curtir</a></li>' + 
+                                                        '<li><a href="user/comment">Comentar</a></li>' + 
+                                                        '<li><a href="user/share">Compartilhar</a></li>' +
+                                                    '</ul>' +
+                                                '</div>' + 
+                                            '</div>';
+
+                            // Insert the post after the ones in the page if old and before if new
+                            if (offset === 0) {
+                                postsDiv.prepend(postElement);
+                            } else {
+                                postsDiv.append(postElement);
+                            }
+                        }
+                    });
+
+                    $("#get-more-" + page).html("Ver posts mais antigos");
+
+                    if ($("div#" + page).hasClass('hidden')) {
+                        showPage(page, nav);
+                    }
+                }
             }
-        }.bind(this));    
+        });
+        
     };
 }
 

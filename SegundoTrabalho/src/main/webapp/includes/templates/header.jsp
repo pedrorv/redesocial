@@ -29,7 +29,7 @@
                 
                 if ( session.getAttribute("id") != null && !session.getAttribute("id").toString().equals("0") ) { %>
             
-            <li><a href="dashboard.jsp">Feed</a></li>
+            <li><a href="painel.jsp">Feed</a></li>
             
             <% } %>
             <% 

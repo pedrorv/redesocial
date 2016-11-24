@@ -46,7 +46,7 @@ public class LoginHandler extends HttpServlet {
                     session.setAttribute("username", username);
                     session.setAttribute("id", id);
                     session.setAttribute("loginstatus", "login-success");
-                    response.sendRedirect("../dashboard.jsp");
+                    response.sendRedirect("../painel.jsp");
                 } else {
                     session.setAttribute("loginstatus", "login-error");
                     response.sendRedirect("../login.jsp");

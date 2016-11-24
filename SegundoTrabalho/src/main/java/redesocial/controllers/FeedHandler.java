@@ -21,7 +21,7 @@ import redesocial.db.Post;
  *
  * @author pedroreis
  */
-@WebServlet(urlPatterns = {"/users/feed"})
+@WebServlet(urlPatterns = {"/user/feed"})
 public class FeedHandler extends HttpServlet {
 
     /**
@@ -41,6 +41,7 @@ public class FeedHandler extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         
         try {
+            
             HttpSession session = request.getSession();
             int userID = (int) session.getAttribute("id");
             int offset = Integer.parseInt(request.getParameter("offset"));
@@ -51,6 +52,7 @@ public class FeedHandler extends HttpServlet {
             
             for (int i = 0; i < feed.size(); i++) {
                 JSON += "{";
+                JSON += "\"id\": " + feed.get(i).getId() + ",";
                 JSON += "\"username\": \"" + feed.get(i).getUsername() + "\",";
                 JSON += "\"post\": \"" + feed.get(i).getPost() + "\",";
                 JSON += "\"date\": \"" + feed.get(i).getDate() + "\"}";
@@ -59,10 +61,10 @@ public class FeedHandler extends HttpServlet {
                 }
             }           
             JSON += "]";
- 
+            
             response.getWriter().write(JSON);         
         } catch (Exception e) {
-            response.sendRedirect("../error.jsp");
+            response.getWriter().write("{ \"error\": true }");
         }
     
     }
