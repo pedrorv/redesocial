@@ -39,15 +39,19 @@ function requestSuccess() {
 // Convert URLs to links
 
 function convertLinks(text) {
-    var textArr = text.split(" ");
-    textArr.forEach(function(item, index) {
-        if (IsURL(item)) {
-            var test2 = "http://" + item;
-            if (isValid(test2)) {   
-                var string = "<a href='http://" + item + "'>" + item + "</a>";
-                textArr[index] = string;
+    var textArr = text.split("\n");
+    textArr.forEach(function(line, index1) {
+        var textLine = line.split(" ");
+        textLine.forEach(function(item, index2) {
+            if (IsURL(item)) {
+                var test2 = "http://" + item;
+                if (isValid(test2)) {   
+                    var string = "<a href='http://" + item + "'>" + item + "</a>";
+                    textLine[index2] = string;
+                }
             }
-        }
+        });
+        textArr[index1] = textLine.join(" ");;
     });
-    return textArr.join(" ");
+    return textArr.join("\n");
 }
