@@ -7,6 +7,7 @@
 
 function Feici () {
     var _this = this;
+    var friendsTimer;
     
     // Page loader
     
@@ -67,6 +68,41 @@ function Feici () {
         
         $(textID).val('');
         $(textID).attr('rows', 2);
+    });
+    
+    $("input#find-friends").on("input", function(e) {
+        clearTimeout(friendsTimer);
+       
+        var searchString = $(this).val().toUpperCase();
+        $("#friend-query-results").html('');
+       
+        if (searchString.length > 0) {
+            friendsTimer = setTimeout(function() {
+                $.ajax({
+                url: '/user/findfriends',
+                method: 'GET',
+                dataType: 'text',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: $.param({ 'search': encodeURIComponent(searchString) }),
+                success: function (data) {
+                    var response = JSON.parse(data);
+                    if (response.error) {
+                        window.location.href = '/error.jsp';
+                    } else {
+                            response.forEach(function(friend) {
+                                var friendElement = '<div class="col-md-12 friend-result">' + 
+                                                        '<h5 class="friend-name">' + friend + '</h5>' +
+                                                    '</div>';
+
+
+                                $("#friend-query-results").append(friendElement);
+                            });
+                        }
+                    }
+                });
+            }, 300);
+        }
+       
     });
     
     // Posts loader

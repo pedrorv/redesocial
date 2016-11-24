@@ -50,8 +50,8 @@
                     
                     <div class="col-md-offset-1 col-md-10 row find-friends">
                         <h5>Encontre amigos</h5>
-                        <input class="form-control" type="text" placeholder="Procure amigos" />
-                        <div class="hidden" id="friend-query-results">
+                        <input id="find-friends" class="form-control" type="text" placeholder="Procure amigos" />
+                        <div id="friend-query-results">
                             
                         </div>
                     </div>

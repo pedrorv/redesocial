@@ -166,3 +166,21 @@ div.find-friends {
 .btn-info {
     margin-bottom: 20px;
 }
+
+div.friend-result {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #000;
+}
+
+div.friend-result:first-child {
+    margin-top: 10px;
+}
+
+div.friend-result:last-child {
+    border-bottom: none;
+}
+
+h5.friend-name {
+    font-size: 18px;
+}

@@ -8,6 +8,27 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class DatabaseDAO extends BaseDAO {
+    
+    public ArrayList<String> findFriends(String username) {
+        ArrayList<String> list = new ArrayList<>();
+        
+        try {
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(
+                "SELECT username FROM usuarios WHERE username LIKE ?;"
+            );
+            pstmt.setString(1, username + '%');
+            ResultSet rst = pstmt.executeQuery();
+            while(rst.next()){
+                list.add(rst.getString("username"));
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
 
     public ArrayList<Post> getTimeline(int userserial, int offset){
         ArrayList<Post> lista = new ArrayList<>();
