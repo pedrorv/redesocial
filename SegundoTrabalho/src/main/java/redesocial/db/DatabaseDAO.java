@@ -70,13 +70,13 @@ public class DatabaseDAO extends BaseDAO {
         try {
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(
-"(select T1.userserial,T1.username,T2.datahora,T2.post,T2.postserial from usuarios T1 \n" +
-" join posts T2 on (T2.userserial=T1.userserial)\n" +
-" join amigos T3 on (T3.userserial=? and T1.userserial=T3.amigoserial)\n" +
-" group by T1.userserial,T1.username,T2.datahora,T2.post,T2.postserial) union\n" +
-" (select T4.userserial,T4.username,T5.datahora,T5.post,T5.postserial from usuarios T4, posts T5\n" +
-" where (T5.userserial=? and T4.userserial=?))\n" +
-" order by datahora desc offset ? limit 10;"      
+                "(select T1.userserial,T1.username,T2.datahora,T2.post,T2.postserial from usuarios T1 \n" +
+                " join posts T2 on (T2.userserial=T1.userserial)\n" +
+                " join amigos T3 on (T3.userserial=? and T1.userserial=T3.amigoserial)\n" +
+                " group by T1.userserial,T1.username,T2.datahora,T2.post,T2.postserial) union\n" +
+                " (select T4.userserial,T4.username,T5.datahora,T5.post,T5.postserial from usuarios T4, posts T5\n" +
+                " where (T5.userserial=? and T4.userserial=?))\n" +
+                " order by datahora desc offset ? limit 10;"      
             );
             pstmt.setInt(1, userserial);
             pstmt.setInt(2, userserial);
@@ -124,7 +124,7 @@ public class DatabaseDAO extends BaseDAO {
         try {
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(
-                    "SELECT userserial FROM usuarios WHERE username=?;"
+                "SELECT userserial FROM usuarios WHERE username=?;"
             );
             pstmt.setString(1, username);
             ResultSet rst = pstmt.executeQuery();
@@ -146,7 +146,7 @@ public class DatabaseDAO extends BaseDAO {
         try {
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(
-                    "INSERT INTO usuarios (username) VALUES(?);"
+                "INSERT INTO usuarios (username) VALUES(?);"
             );
             pstmt.setString(1, username);
             pstmt.executeUpdate();

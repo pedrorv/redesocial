@@ -7,9 +7,9 @@
 $(document).ready(function() {  
     // Prevent redirect until like, comment and share functions are implemented
 
-    $("ul.user-actions li a").on("click", function(e) {
-        e.preventDefault();
-    });
+    // $("ul.user-actions li a").on("click", function(e) {
+    //     e.preventDefault();
+    // });
 
     // Prevent redirect until post function is implemented
 
@@ -43,10 +43,10 @@ function convertLinks(text) {
     textArr.forEach(function(line, index1) {
         var textLine = line.split(" ");
         textLine.forEach(function(item, index2) {
-            if (IsURL(item)) {
-                var test2 = "http://" + item;
+            if (IsURL(item.toLowerCase())) {
+                var test2 = "http://" + item.toLowerCase();
                 if (isValid(test2)) {   
-                    var string = "<a href='http://" + item + "'>" + item + "</a>";
+                    var string = "<a href='" + test2 + "'>" + item + "</a>";
                     textLine[index2] = string;
                 }
             }

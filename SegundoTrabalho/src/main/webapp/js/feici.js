@@ -162,6 +162,12 @@ function Feici () {
                     if ($("div#" + page).hasClass('hidden')) {
                         showPage(page, nav);
                     }
+                    
+                    // Insert event to prevent liking, sharing and commenting functionalities until not implemented.
+                    
+                    $("ul.user-actions li a").on("click", function(e) {
+                        e.preventDefault();
+                    });
                 }
             }
         });
