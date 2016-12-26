@@ -35,6 +35,9 @@ function requestSuccess() {
     }, 2000);
 }
 
+function newPostAlert() {
+    $("div.alert-info").fadeIn().removeClass("hidden");
+}
 
 // Convert URLs to links
 

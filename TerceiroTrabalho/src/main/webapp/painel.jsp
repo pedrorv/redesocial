@@ -32,6 +32,11 @@
             </div>
         </div>
         
+        <div class="alert alert-info hidden new-post-alert" role="alert">
+            <p><span id="amount"></span> <span id="message"></span></p>
+            <p>Clique para exibir.</p>
+        </div>
+        
         <div class="page hidden" id="feed">
             <div class="container main-content">
                 <div class="user-info col-md-4">

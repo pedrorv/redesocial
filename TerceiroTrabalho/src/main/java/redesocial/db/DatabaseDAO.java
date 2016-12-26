@@ -51,7 +51,7 @@ public class DatabaseDAO extends BaseDAO {
         return list;
     }
 
-    public ArrayList<Post> getTimeline(int userserial, int offset){
+    public ArrayList<Post> getTimeline(int userserial, int offset, int limit){
         ArrayList<Post> lista = new ArrayList<>();
         Post post = null;
         try {
@@ -60,11 +60,12 @@ public class DatabaseDAO extends BaseDAO {
                 "select T4.userserial,T4.username,T5.datahora,T5.post,T5.postserial" +
                 " from usuarios T4, posts T5\n" +
                 " where T5.userserial=? and T4.userserial=?\n" +
-                " order by datahora desc offset ? limit 10;"      
+                " order by datahora desc offset ? limit ?;"      
             );
             pstmt.setInt(1, userserial);
             pstmt.setInt(2, userserial);
             pstmt.setInt(3, offset);
+            pstmt.setInt(4, limit);
             ResultSet rst = pstmt.executeQuery();
             while(rst.next()){
                 post = new Post();
@@ -85,7 +86,7 @@ public class DatabaseDAO extends BaseDAO {
         return lista;
     }
 
-    public ArrayList<Post> getFeed(int userserial, int offset){
+    public ArrayList<Post> getFeed(int userserial, int offset, int limit){
         ArrayList<Post> lista = new ArrayList<>();
         Post post = null;
         try {
@@ -97,12 +98,13 @@ public class DatabaseDAO extends BaseDAO {
                 " group by T1.userserial,T1.username,T2.datahora,T2.post,T2.postserial) union\n" +
                 " (select T4.userserial,T4.username,T5.datahora,T5.post,T5.postserial from usuarios T4, posts T5\n" +
                 " where (T5.userserial=? and T4.userserial=?))\n" +
-                " order by datahora desc offset ? limit 10;"      
+                " order by datahora desc offset ? limit ?;"      
             );
             pstmt.setInt(1, userserial);
             pstmt.setInt(2, userserial);
             pstmt.setInt(3, userserial);
             pstmt.setInt(4, offset);
+            pstmt.setInt(5, limit);
             ResultSet rst = pstmt.executeQuery();
             while(rst.next()){
                 post = new Post();

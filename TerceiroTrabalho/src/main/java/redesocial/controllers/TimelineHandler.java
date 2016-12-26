@@ -45,8 +45,9 @@ public class TimelineHandler extends HttpServlet {
             HttpSession session = request.getSession();
             int userID = (int) session.getAttribute("id");
             int offset = Integer.parseInt(request.getParameter("offset"));
+            int limit = Integer.parseInt(request.getParameter("limit"));
             
-            ArrayList<Post> timeline = (new DatabaseDAO()).getTimeline(userID, offset);
+            ArrayList<Post> timeline = (new DatabaseDAO()).getTimeline(userID, offset, limit);
             
             String JSON = "[";
             

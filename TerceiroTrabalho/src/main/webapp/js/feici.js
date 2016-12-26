@@ -10,6 +10,7 @@ function Feici (id) {
     var friendsTimer;
     var websocket;
     var loggedUser = id;
+    var newPosts = 0;
     
     // Websocket
     
@@ -29,7 +30,13 @@ function Feici (id) {
         };
 
         websocket.onmessage = function (event) {
-            console.log(event.data);
+            var friends = JSON.parse(event.data);
+            if (friends.indexOf(loggedUser) !== -1) {
+                newPosts += 1;
+                $('span#amount').html(newPosts);
+                $('span#message').html((newPosts > 1) ? 'novas mensagens.' : 'nova mensagem.');
+                newPostAlert();
+            }            
         };
 
         websocket.onerror = function (event) {
@@ -62,18 +69,24 @@ function Feici (id) {
     
     $("#header-feed").on("click", function() {
         if ($("div.user-feed").find('div.post-feed').length > 0) {
-            showPage('feed', 'timeline');
+            showPage("feed", "timeline");
         } else {
-            _this.loadPosts('feed');
+            _this.loadPosts("feed");
         }
     });
     
+    $("div.new-post-alert").on("click", function() {
+       _this.loadPosts("feed", "new", newPosts);
+       $("div.new-post-alert").addClass("hidden");
+       newPosts = 0;
+    });
+    
     $("#get-more-feed").on("click", function() {
-        _this.loadPosts('feed');
+        _this.loadPosts("feed");
     });
     
     $("#get-more-timeline").on("click", function() {
-        _this.loadPosts('timeline'); 
+        _this.loadPosts("timeline"); 
     });
     
     $("input.post-button").on("click", function(e) {
@@ -140,16 +153,17 @@ function Feici (id) {
     
     // Posts loader
     
-    this.loadPosts = function (page, from) {
+    this.loadPosts = function (page, from, limit) {
         var postsDiv = $("div.user-" + page);        
         var offset = (from === 'new') ? 0 : postsDiv.find('div.post-' + page).length;
         var offsetParameter = "?offset=" + offset;
+        var limitParameter = offsetParameter + "&limit=" + (limit || 10);
         var nav = (page === 'feed') ? 'timeline' : 'feed';
                 
         $("#get-more-" + page).html("Buscando posts...");
         
         $.ajax({
-            url: '/user/' + page + offsetParameter,
+            url: '/user/' + page + limitParameter,
             dataType: 'text',
             method: 'POST',
             success: function (data) {

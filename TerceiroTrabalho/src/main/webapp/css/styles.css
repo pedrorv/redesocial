@@ -184,3 +184,9 @@ div.friend-result:last-child {
 h5.friend-name {
     font-size: 18px;
 }
+
+div.new-post-alert {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+}

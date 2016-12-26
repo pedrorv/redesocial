@@ -45,8 +45,9 @@ public class FeedHandler extends HttpServlet {
             HttpSession session = request.getSession();
             int userID = (int) session.getAttribute("id");
             int offset = Integer.parseInt(request.getParameter("offset"));
+            int limit = Integer.parseInt(request.getParameter("limit"));
                         
-            ArrayList<Post> feed = (new DatabaseDAO()).getFeed(userID, offset);
+            ArrayList<Post> feed = (new DatabaseDAO()).getFeed(userID, offset, limit);
             
             String JSON = "[";
             
