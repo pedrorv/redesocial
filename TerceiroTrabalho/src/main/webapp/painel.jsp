@@ -91,6 +91,7 @@
         </div>
         <script src="js/feici.js"></script>
         <script>
+            var feici = new Feici('${id}');
             feici.loadPosts('feed');
         </script>
     </body>

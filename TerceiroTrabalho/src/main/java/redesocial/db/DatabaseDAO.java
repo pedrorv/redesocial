@@ -29,6 +29,27 @@ public class DatabaseDAO extends BaseDAO {
         }
         return list;
     }
+    
+    public ArrayList<String> findFriendsIDs(int userid) {
+        ArrayList<String> list = new ArrayList<>();
+        
+        try {
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(
+                "SELECT amigoserial FROM amigos WHERE userserial=?;"
+            );
+            pstmt.setInt(1, userid);
+            ResultSet rst = pstmt.executeQuery();
+            while(rst.next()){
+                list.add(rst.getString("amigoserial"));
+            }
+            con.close();        
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
 
     public ArrayList<Post> getTimeline(int userserial, int offset){
         ArrayList<Post> lista = new ArrayList<>();

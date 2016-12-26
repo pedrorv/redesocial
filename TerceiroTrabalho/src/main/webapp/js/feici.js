@@ -5,9 +5,41 @@
  */
 
 
-function Feici () {
+function Feici (id) {
     var _this = this;
     var friendsTimer;
+    var websocket;
+    var loggedUser = id;
+    
+    // Websocket
+    
+    function connect() {
+        var wsUri = "ws://localhost:8080/newpostemitter";
+        
+        try {
+            websocket = new WebSocket(wsUri);
+        } catch (error) {
+            return console.log('Erro:', error);
+        }
+        
+        websocket.binaryType = "arraybuffer";
+
+        websocket.onopen = function (event) {
+            console.log('Conectou');            
+        };
+
+        websocket.onmessage = function (event) {
+            console.log(event.data);
+        };
+
+        websocket.onerror = function (event) {
+            console.log('Erro:', event);            
+        };
+    }
+    
+    connect();    
+    console.log(websocket);
+    
     
     // Page loader
     
@@ -62,6 +94,7 @@ function Feici () {
                     window.location.href = '/error.jsp';
                 } else {
                     _this.loadPosts(page, 'new');
+                    websocket.send(loggedUser);
                 }
             }
         });
@@ -174,6 +207,4 @@ function Feici () {
         
     };
 }
-
-var feici = new Feici();
     
