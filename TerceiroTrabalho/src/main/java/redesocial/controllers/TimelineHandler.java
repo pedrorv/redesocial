@@ -55,7 +55,7 @@ public class TimelineHandler extends HttpServlet {
                 JSON += "{";
                 JSON += "\"id\": " + timeline.get(i).getId() + ",";
                 JSON += "\"username\": \"" + timeline.get(i).getUsername() + "\",";
-                JSON += "\"post\": \"" + timeline.get(i).getPost() + "\",";
+                JSON += "\"post\": \"" + timeline.get(i).getPost().replaceAll("(\\r|\\n|\\r\\n|\\u2028)", "\\\\n") + "\",";
                 JSON += "\"date\": \"" + timeline.get(i).getDate() + "\"}";
                 if (i != timeline.size() - 1) {
                     JSON += ",";

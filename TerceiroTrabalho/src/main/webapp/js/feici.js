@@ -96,7 +96,7 @@ function Feici (id) {
             method: 'POST',
             dataType: 'text',
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            data: $.param({ 'post-content': encodeURIComponent($(textID).val()) }),
+            data: $.param({ 'post-content': $(textID).val() }),
             success: function (data) {
                 var response = JSON.parse(data);
                 if (response.error) {
@@ -125,7 +125,7 @@ function Feici (id) {
                 method: 'GET',
                 dataType: 'text',
                 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                data: $.param({ 'search': encodeURIComponent(searchString) }),
+                data: $.param({ 'search': searchString }),
                 success: function (data) {
                     var response = JSON.parse(data);
                     if (response.error) {
@@ -179,7 +179,7 @@ function Feici (id) {
                                                 '<h3 class="post-author">' + post.username + '</h3>' +
                                                 '<h6 class="post-date">' + post.date + '</h6>' +
                                                 '<div class="post-content">' + 
-                                                    '<pre>' + convertLinks(decodeURIComponent(post.post)) + '</pre>' +
+                                                    '<pre>' + convertLinks(post.post) + '</pre>' +
                                                 '</div>' + 
                                                 '<div class="post-actions">' +
                                                     '<ul class="user-actions">' + 

@@ -55,7 +55,7 @@ public class FeedHandler extends HttpServlet {
                 JSON += "{";
                 JSON += "\"id\": " + feed.get(i).getId() + ",";
                 JSON += "\"username\": \"" + feed.get(i).getUsername() + "\",";
-                JSON += "\"post\": \"" + feed.get(i).getPost() + "\",";
+                JSON += "\"post\": \"" + feed.get(i).getPost().replaceAll("(\\r|\\n|\\r\\n|\\u2028)", "\\\\n") + "\",";
                 JSON += "\"date\": \"" + feed.get(i).getDate() + "\"}";
                 if (i != feed.size() - 1) {
                     JSON += ",";
