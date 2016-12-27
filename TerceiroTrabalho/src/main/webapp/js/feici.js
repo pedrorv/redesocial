@@ -102,7 +102,9 @@ function Feici (id) {
                 if (response.error) {
                     window.location.href = '/error.jsp';
                 } else {
-                    _this.loadPosts(page, 'new');
+                    _this.loadPosts(page, 'new', (1 + newPosts));
+                    newPosts = 0;
+                    $("div.new-post-alert").addClass("hidden");
                     websocket.send(loggedUser);
                 }
             }
