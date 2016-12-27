@@ -20,6 +20,12 @@ import redesocial.db.Post;
 /**
  *
  * @author pedroreis
+ * 
+ * 
+ * Regex adaptada da resposta do usuário anubhava
+ * http://stackoverflow.com/questions/19909579/find-and-replace-all-newline-or-breakline-characters-with-n-in-a-string-platf
+ * 
+ * 
  */
 @WebServlet(urlPatterns = {"/user/feed"})
 public class FeedHandler extends HttpServlet {
@@ -55,7 +61,7 @@ public class FeedHandler extends HttpServlet {
                 JSON += "{";
                 JSON += "\"id\": " + feed.get(i).getId() + ",";
                 JSON += "\"username\": \"" + feed.get(i).getUsername() + "\",";
-                JSON += "\"post\": \"" + feed.get(i).getPost().replaceAll("(\\r|\\n|\\r\\n|\\u2028)", "\\\\n") + "\",";
+                JSON += "\"post\": \"" + feed.get(i).getPost().replaceAll("(\\r|\\n|\\r\\n)", "\\\\n") + "\",";
                 JSON += "\"date\": \"" + feed.get(i).getDate() + "\"}";
                 if (i != feed.size() - 1) {
                     JSON += ",";

@@ -21,6 +21,11 @@ import redesocial.db.Post;
 /**
  *
  * @author pedroreis
+ * 
+ * Regex adaptada da resposta do usuário anubhava
+ * http://stackoverflow.com/questions/19909579/find-and-replace-all-newline-or-breakline-characters-with-n-in-a-string-platf
+ * 
+ * 
  */
 @WebServlet(urlPatterns = {"/user/timeline"})
 public class TimelineHandler extends HttpServlet {
@@ -55,7 +60,7 @@ public class TimelineHandler extends HttpServlet {
                 JSON += "{";
                 JSON += "\"id\": " + timeline.get(i).getId() + ",";
                 JSON += "\"username\": \"" + timeline.get(i).getUsername() + "\",";
-                JSON += "\"post\": \"" + timeline.get(i).getPost().replaceAll("(\\r|\\n|\\r\\n|\\u2028)", "\\\\n") + "\",";
+                JSON += "\"post\": \"" + timeline.get(i).getPost().replaceAll("(\\r|\\n|\\r\\n)", "\\\\n") + "\",";
                 JSON += "\"date\": \"" + timeline.get(i).getDate() + "\"}";
                 if (i != timeline.size() - 1) {
                     JSON += ",";
