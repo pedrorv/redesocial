@@ -189,4 +189,5 @@ div.new-post-alert {
     position: absolute;
     bottom: 30px;
     left: 20px;
+    cursor: pointer;
 }

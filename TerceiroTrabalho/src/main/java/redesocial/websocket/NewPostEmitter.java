@@ -47,7 +47,7 @@ public class NewPostEmitter {
                     client.getBasicRemote().sendText(friendsIDsArray);
                 }
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -55,18 +55,12 @@ public class NewPostEmitter {
     @OnClose
     public void onClose(Session client) {
         CONNECTED_USERS.remove(client);
-        
-        System.out.println(client.getId());
-        System.out.println("=== Desconectou");
     }
 
     @OnOpen
     public void onOpen(Session client) {
         CONNECTED_USERS.add(client);
         thisUser = client;
-        
-        System.out.println(client.getId());
-        System.out.println("=== Conectou");        
     }
 
     @OnError

@@ -25,16 +25,14 @@ function Feici (id) {
         
         websocket.binaryType = "arraybuffer";
 
-        websocket.onopen = function (event) {
-            console.log('Conectou');            
-        };
+        websocket.onopen = function (event) {};
 
         websocket.onmessage = function (event) {
             var friends = JSON.parse(event.data);
             if (friends.indexOf(loggedUser) !== -1) {
                 newPosts += 1;
                 $('span#amount').html(newPosts);
-                $('span#message').html((newPosts > 1) ? 'novas mensagens.' : 'nova mensagem.');
+                $('span#message').html((newPosts > 1) ? 'novas postagens.' : 'nova postagem.');
                 newPostAlert();
             }            
         };
@@ -44,9 +42,7 @@ function Feici (id) {
         };
     }
     
-    connect();    
-    console.log(websocket);
-    
+    connect();
     
     // Page loader
     
@@ -156,14 +152,13 @@ function Feici (id) {
     this.loadPosts = function (page, from, limit) {
         var postsDiv = $("div.user-" + page);        
         var offset = (from === 'new') ? 0 : postsDiv.find('div.post-' + page).length;
-        var offsetParameter = "?offset=" + offset;
-        var limitParameter = offsetParameter + "&limit=" + (limit || 10);
+        var parameters = "?offset=" + offset + "&limit=" + (limit || 10);
         var nav = (page === 'feed') ? 'timeline' : 'feed';
                 
         $("#get-more-" + page).html("Buscando posts...");
         
         $.ajax({
-            url: '/user/' + page + limitParameter,
+            url: '/user/' + page + parameters,
             dataType: 'text',
             method: 'POST',
             success: function (data) {
