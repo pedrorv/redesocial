@@ -151,7 +151,7 @@ function Feici (id) {
     
     this.loadPosts = function (page, from, limit) {
         var postsDiv = $("div.user-" + page);        
-        var offset = (from === 'new') ? 0 : postsDiv.find('div.post-' + page).length;
+        var offset = (from === 'new') ? 0 : (postsDiv.find('div.post-' + page).length + newPosts);
         var parameters = "?offset=" + offset + "&limit=" + (limit || 10);
         var nav = (page === 'feed') ? 'timeline' : 'feed';
                 

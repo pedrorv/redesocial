@@ -186,8 +186,9 @@ h5.friend-name {
 }
 
 div.new-post-alert {
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     left: 20px;
     cursor: pointer;
+    z-index: 10;
 }

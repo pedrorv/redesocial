@@ -13,5 +13,7 @@
     <script src="js/bootstrap.min.js"></script>         
     <script src="js/auxiliarscripts.js"></script>   
     <script src="js/script.js"></script>
+    <title>Feici</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link rel=icon href=favicon.png sizes="16x16" type="image/png">
 </head>
