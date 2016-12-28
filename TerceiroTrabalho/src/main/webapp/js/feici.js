@@ -72,7 +72,8 @@ function Feici (id) {
     });
     
     $("div.new-post-alert").on("click", function() {
-       _this.loadPosts("feed", "new", newPosts);
+       var timelinePagePosts =  $("div.user-timeline").find('div.post-timeline').length;
+       _this.loadPosts("feed", "new", (timelinePagePosts + newPosts));
        $("div.new-post-alert").addClass("hidden");
        newPosts = 0;
     });
