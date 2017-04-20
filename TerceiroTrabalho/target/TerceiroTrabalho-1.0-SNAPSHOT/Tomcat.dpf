@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="">
+  <Resource auth="Container" driverClassName="org.postgresql.Driver" maxActive="8" maxIdle="4" name="jdbc/redesocial" password="" type="javax.sql.DataSource" url="jdbc:postgresql://localhost:5432/redesocial" username="pedroreis"/>
+</Context>
